@@ -56,7 +56,7 @@ document.addEventListener('keyup', (event) => {
 
 function gameLoop() {
     // Player speed
-    const speed = gameState.debugMode ? 10 : 5;
+    const speed = gameState.debugMode ? 20 : 5; // Increased debug speed
 
     // Player movement
     if (gameState.keys['ArrowRight']) {
@@ -96,16 +96,10 @@ function gameLoop() {
         gameState.player.x = gameState.worldWidth - 100;
     }
 
-    // Update camera with dead zone
-    const deadZone = 200; // 1/10th of 1920 is 192, so 200 is a good round number
-    const rightBoundary = gameState.camera.x + gameState.baseWidth - deadZone;
-    const leftBoundary = gameState.camera.x + deadZone;
-
-    if (gameState.player.x > rightBoundary) {
-        gameState.camera.x = gameState.player.x - (gameState.baseWidth - deadZone);
-    } else if (gameState.player.x < leftBoundary) {
-        gameState.camera.x = gameState.player.x - deadZone;
-    }
+    // Update camera with smoothing
+    const targetCameraX = gameState.player.x - (gameState.baseWidth / 2);
+    const smoothing = 0.05; // Lower value for smoother camera
+    gameState.camera.x += (targetCameraX - gameState.camera.x) * smoothing;
 
     // Clamp camera to world boundaries
     if (gameState.camera.x < 0) {
