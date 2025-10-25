@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(to bottom, #87CEEB, #f0f8ff);
+}
+
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.layer {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat-x;
+    animation: scroll 20s linear infinite;
+}
+
+.layer1 {
+    background-image: url('assets/layer1.svg');
+    animation-duration: 20s;
+    z-index: 1;
+}
+
+.layer2 {
+    background-image: url('assets/layer2.svg');
+    animation-duration: 15s;
+    z-index: 2;
+}
+
+.layer3 {
+    background-image: url('assets/layer3.svg');
+    animation-duration: 10s;
+    z-index: 3;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+#player {
+    position: absolute;
+    bottom: 100px;
+    left: 100px;
+    z-index: 4;
+    transform: scale(0.8);
+}
+
+#girl {
+    position: absolute;
+    bottom: 80px;
+    left: 55px;
+}
+
+#bicycle {
+    position: absolute;
+}
+
+.wheel {
+    position: absolute;
+    bottom: -25px;
+    animation: spin 1s linear infinite;
+}
+
+.wheel1 {
+    left: 20px;
+}
+
+.wheel2 {
+    left: 140px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
