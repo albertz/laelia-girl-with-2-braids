@@ -20,26 +20,24 @@
 
     <!-- Legs & Shoes -->
     <g>
-        <rect x="42" y="95" width="10" height="40" rx="3" fill="#F5CBA7"/>
-        <rect x="58" y="95" width="10" height="40" rx="3" fill="#F5CBA7"/>
-        <rect x="42" y="115" width="10" height="20" fill="url(#stripes)"/>
-        <rect x="58" y="115" width="10" height="20" fill="url(#stripes)"/>
-        <path d="M 40 135 C 35 145, 55 145, 50 135 L 40 135 Z" fill="#8B4513"/>
-        <path d="M 56 135 C 51 145, 71 145, 66 135 L 56 135 Z" fill="#8B4513"/>
-        <path d="M 42 136 L 48 136" stroke="#FFFFFF" stroke-width="0.5"/>
-        <path d="M 58 136 L 64 136" stroke="#FFFFFF" stroke-width="0.5"/>
+        <rect x="42" y="95" width="10" height="20" rx="3" fill="#F5CBA7"/>
+        <rect x="58" y="95" width="10" height="20" rx="3" fill="#F5CBA7"/>
+        <rect x="42" y="115" width="10" height="20" fill="url(#stripes)" transform="rotate(45, 47, 115)"/>
+        <rect x="58" y="115" width="10" height="20" fill="url(#stripes)" transform="rotate(-45, 63, 115)"/>
+        <path d="M 40 135 C 35 145, 55 145, 50 135 L 40 135 Z" fill="#8B4513" transform="rotate(45, 47, 135)"/>
+        <path d="M 56 135 C 51 145, 71 145, 66 135 L 56 135 Z" fill="#8B4513" transform="rotate(-45, 63, 135)"/>
     </g>
 
     <!-- Arms -->
     <g>
-        <rect x="30" y="55" width="8" height="35" rx="4" fill="#F5CBA7" transform="rotate(-10, 34, 72.5)"/>
-        <rect x="72" y="55" width="8" height="35" rx="4" fill="#F5CBA7" transform="rotate(10, 76, 72.5)"/>
+        <rect x="30" y="55" width="8" height="35" rx="4" fill="#F5CBA7" transform="rotate(-30, 34, 72.5)"/>
+        <rect x="72" y="55" width="8" height="35" rx="4" fill="#F5CBA7" transform="rotate(30, 76, 72.5)"/>
     </g>
 
     <!-- Body -->
     <g>
-        <rect x="40" y="50" width="30" height="50" rx="5" fill="#4A90E2"/>
-        <rect x="40" y="50" width="30" height="50" rx="5" fill="url(#dress-pattern)"/>
+        <rect x="40" y="50" width="30" height="40" rx="5" fill="#4A90E2"/>
+        <rect x="40" y="50" width="30" height="40" rx="5" fill="url(#dress-pattern)"/>
         <path d="M 40 50 C 45 55, 55 55, 60 50 L 70 50 L 40 50 Z" fill="#FFFFFF" fill-opacity="0.8"/>
         <rect x="45" y="70" width="20" height="5" fill="#FFD700"/>
     </g>
