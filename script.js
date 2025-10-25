@@ -1,29 +1,101 @@
 
-const player = document.getElementById('player');
+const playerElement = document.getElementById('player');
 const backgroundLayers = document.querySelectorAll('.layer');
-const wheels = document.querySelectorAll('.wheel svg');
 
-let speed = 1;
-
-function updateAnimationSpeed() {
-    backgroundLayers.forEach((layer, index) => {
-        const baseDuration = [20, 15, 10];
-        layer.style.animationDuration = `${baseDuration[index] / speed}s`;
-    });
-
-    wheels.forEach(wheel => {
-        wheel.style.animationDuration = `${1 / speed}s`;
-    });
-}
+const gameState = {
+    player: {
+        x: 100,
+        y: 0,
+        dx: 0,
+        dy: 0,
+        onGround: true,
+        onBike: true
+    },
+    camera: {
+        x: 0,
+        y: 0
+    },
+    keys: {},
+    gravity: 0.5,
+    ground: 0,
+    worldWidth: 3000
+};
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight') {
-        speed = Math.min(speed + 0.2, 5);
-    } else if (event.key === 'ArrowLeft') {
-        speed = Math.max(speed - 0.2, 0.2);
-    }
-    updateAnimationSpeed();
+    gameState.keys[event.key] = true;
 });
 
-// Initial setup to apply the base speed.
-updateAnimationSpeed();
+document.addEventListener('keyup', (event) => {
+    gameState.keys[event.key] = false;
+});
+
+function gameLoop() {
+    // Player movement
+    if (gameState.keys['ArrowRight']) {
+        gameState.player.dx = 5;
+    } else if (gameState.keys['ArrowLeft']) {
+        gameState.player.dx = -5;
+    } else {
+        gameState.player.dx = 0;
+    }
+
+    if (gameState.keys['ArrowUp'] && gameState.player.onGround) {
+        gameState.player.dy = -12; // Jump
+        gameState.player.onGround = false;
+    }
+
+    // Update player position
+    gameState.player.x += gameState.player.dx;
+    gameState.player.y += gameState.player.dy;
+
+    // Apply gravity
+    if (!gameState.player.onGround) {
+        gameState.player.dy += gameState.gravity;
+    }
+
+    // Collision with ground
+    if (gameState.player.y > gameState.ground) {
+        gameState.player.y = gameState.ground;
+        gameState.player.dy = 0;
+        gameState.player.onGround = true;
+    }
+
+    // World boundaries
+    if (gameState.player.x < 0) {
+        gameState.player.x = 0;
+    }
+    if (gameState.player.x > gameState.worldWidth - playerElement.clientWidth) {
+        gameState.player.x = gameState.worldWidth - playerElement.clientWidth;
+    }
+
+    // Update camera
+    const cameraDeadZone = 300;
+    if (gameState.player.x > gameState.camera.x + window.innerWidth - cameraDeadZone) {
+        gameState.camera.x = gameState.player.x - window.innerWidth + cameraDeadZone;
+    }
+    if (gameState.player.x < gameState.camera.x + cameraDeadZone) {
+        gameState.camera.x = gameState.player.x - cameraDeadZone;
+    }
+
+    // Clamp camera to world boundaries
+    if (gameState.camera.x < 0) {
+        gameState.camera.x = 0;
+    }
+    if (gameState.camera.x > gameState.worldWidth - window.innerWidth) {
+        gameState.camera.x = gameState.worldWidth - window.innerWidth;
+    }
+
+    // Apply transformations
+    playerElement.style.transform = `translateX(${gameState.player.x - gameState.camera.x}px) translateY(${-gameState.player.y}px)`;
+
+    backgroundLayers.forEach((layer, index) => {
+        const parallaxFactor = (index + 1) * 0.2;
+        const backgroundOffset = -gameState.camera.x * parallaxFactor;
+        layer.style.backgroundPositionX = `${backgroundOffset}px`;
+    });
+
+    requestAnimationFrame(gameLoop);
+}
+
+// Initial setup
+gameLoop();
