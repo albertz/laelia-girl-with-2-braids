@@ -12,6 +12,7 @@ body {
     left: 0;
     transform-origin: top left;
     background: linear-gradient(to bottom, #87CEEB, #f0f8ff);
+    overflow: hidden;
 }
 
 #background {
