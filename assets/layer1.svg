@@ -2,15 +2,15 @@
   <path d="M0,1080 V800 C480,700 960,900 1440,800 C1920,700 1920,800 1920,800 V1080 H0 Z" fill="#90EE90"/>
   <g transform="translate(300, 750) scale(0.5)">
     <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
-    <circle cx="0" cy="25" r="30" fill="#2E8B57"/>
+    <path d="M -30 50 L 0 -50 L 30 50 Z" fill="#2E8B57"/>
   </g>
-  <g transform="translate(900, 720) scale(0.4)">
+  <g transform="translate(900, 700) scale(0.4)">
     <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
-    <circle cx="0" cy="25" r="30" fill="#2E8B57"/>
+    <path d="M -30 50 L 0 -50 L 30 50 Z" fill="#2E8B57"/>
   </g>
   <g transform="translate(1500, 780) scale(0.6)">
     <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
-    <circle cx="0" cy="25" r="30" fill="#2E8B57"/>
+    <path d="M -30 50 L 0 -50 L 30 50 Z" fill="#2E8B57"/>
   </g>
   <g transform="translate(200, 200) scale(0.8)">
     <circle cx="0" cy="0" r="40" fill="white" fill-opacity="0.8"/>

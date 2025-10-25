@@ -21,15 +21,19 @@
             <div id="bicycle">
                 <svg id="bicycle-svg" width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
                     <!-- Frame -->
-                    <polygon points="50,80 100,20 150,80" fill="none" stroke="#5D6D7E" stroke-width="5"/>
-                    <line x1="100" y1="20" x2="50" y2="80" stroke="#5D6D7E" stroke-width="5"/>
-                    <line x1="100" y1="20" x2="160" y2="80" stroke="#5D6D7E" stroke-width="5"/>
-                    <line x1="50" y1="80" x2="160" y2="80" stroke="#5D6D7E" stroke-width="5"/>
+                    <path d="M 50 80 L 100 20 L 150 80" fill="none" stroke="#5D6D7E" stroke-width="5"/>
+                    <path d="M 100 20 L 50 80" stroke="#5D6D7E" stroke-width="5"/>
+                    <path d="M 100 80 L 150 80" stroke="#5D6D7E" stroke-width="5"/>
+                    <path d="M 100 80 L 50 80" stroke="#5D6D7E" stroke-width="5"/>
+                    <path d="M 100 20 L 100 80" stroke="#5D6D7E" stroke-width="5"/>
                     <!-- Handlebars -->
-                    <line x1="100" y1="20" x2="90" y2="10" stroke="#5D6D7E" stroke-width="5"/>
-                    <line x1="90" y1="10" x2="80" y2="10" stroke="#5D6D7E" stroke-width="5"/>
+                    <path d="M 100 20 L 90 10 L 70 15" fill="none" stroke="#5D6D7E" stroke-width="5"/>
                     <!-- Seat -->
-                    <rect x="35" y="75" width="30" height="10" fill="#5D6D7E"/>
+                    <path d="M 40 80 L 60 80 L 50 70 Z" fill="#5D6D7E"/>
+                    <!-- Pedals -->
+                    <circle cx="100" cy="80" r="15" fill="none" stroke="#5D6D7E" stroke-width="2"/>
+                    <line x1="100" y1="80" x2="115" y2="85" stroke="#5D6D7E" stroke-width="4"/>
+                    <line x1="85" y1="75" x2="100" y2="80" stroke="#5D6D7E" stroke-width="4"/>
                 </svg>
                 <div class="wheel wheel1">
                     <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
