@@ -90,6 +90,45 @@ body {
     display: none;
 }
 
+@keyframes walk-animals {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(50px);
+    }
+}
+
+.animal {
+    animation: walk-animals 20s linear infinite alternate;
+}
+
+@keyframes fly-birds {
+    from {
+        transform: translateX(-100px);
+    }
+    to {
+        transform: translateX(2000px);
+    }
+}
+
+.bird {
+    animation: fly-birds 30s linear infinite;
+}
+
+@keyframes move-clouds {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(2000px);
+    }
+}
+
+.cloud {
+    animation: move-clouds 60s linear infinite;
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
