@@ -1,11 +1,18 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0,1080 V850 C480,800 960,950 1440,850 C1920,750 1920,850 1920,850 V1080 H0 Z" fill="#A9A9A9"/>
+  <path d="M0,1080 V850 C480,800 960,950 1440,850 C1920,750 1920,850 1920,850 V1080 H0 Z" fill="#3CB371"/>
   <g transform="translate(500, 800) scale(0.7)">
     <rect x="-10" y="50" width="20" height="50" fill="#8B4513"/>
     <circle cx="0" cy="25" r="30" fill="#228B22"/>
   </g>
-  <g transform="translate(1200, 820) scale(0.6)">
+  <g transform="translate(1200, 840) scale(0.6)">
     <rect x="-10" y="50" width="20" height="50" fill="#8B4513"/>
     <circle cx="0" cy="25" r="30" fill="#228B22"/>
+  </g>
+  <g transform="translate(600, 250) scale(1)">
+    <circle cx="0" cy="0" r="45" fill="white" fill-opacity="0.7"/>
+    <circle cx="45" cy="0" r="45" fill="white" fill-opacity="0.7"/>
+    <circle cx="90" cy="0" r="45" fill="white" fill-opacity="0.7"/>
+    <circle cx="22.5" cy="-22.5" r="45" fill="white" fill-opacity="0.7"/>
+    <circle cx="67.5" cy="-22.5" r="45" fill="white" fill-opacity="0.7"/>
   </g>
 </svg>

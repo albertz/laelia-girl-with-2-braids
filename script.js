@@ -97,7 +97,8 @@ function gameLoop() {
     }
 
     // Update camera with smoothing
-    const targetCameraX = gameState.player.x - (gameState.baseWidth / 2);
+    const playerWidth = 80; // Corrected player width (100 * 0.8 scale)
+    const targetCameraX = gameState.player.x - (gameState.baseWidth / 2) + (playerWidth / 2);
     const smoothing = 0.05; // Lower value for smoother camera
     gameState.camera.x += (targetCameraX - gameState.camera.x) * smoothing;
 

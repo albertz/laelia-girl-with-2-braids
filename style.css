@@ -20,6 +20,16 @@ body {
     height: 100%;
 }
 
+#sun {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: #FFD700;
+    border-radius: 50%;
+}
+
 .layer {
     position: absolute;
     bottom: 0;
@@ -45,7 +55,7 @@ body {
 
 #player {
     position: absolute;
-    bottom: 100px; /* This will be the ground level */
+    bottom: 0;
     left: 0;
     z-index: 4;
     transform: scale(0.8);
@@ -57,17 +67,18 @@ body {
 
 #girl {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px; /* Adjusted for correct seating */
     left: 55px;
 }
 
 #bicycle {
     position: absolute;
+    bottom: 20px; /* Adjusted to bring wheels on screen */
 }
 
 .wheel {
     position: absolute;
-    bottom: -25px;
+    bottom: 0;
     animation: spin 1s linear infinite;
 }
 

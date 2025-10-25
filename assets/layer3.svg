@@ -1,10 +1,10 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0,1080 V900 C480,850 960,1000 1440,900 C1920,800 1920,900 1920,900 V1080 H0 Z" fill="#808080"/>
+  <path d="M0,1080 V900 C480,850 960,1000 1440,900 C1920,800 1920,900 1920,900 V1080 H0 Z" fill="#2E8B57"/>
   <g transform="translate(200, 880) scale(1)">
     <rect x="-15" y="75" width="30" height="75" fill="#8B4513"/>
     <circle cx="0" cy="37.5" r="45" fill="#006400"/>
   </g>
-  <g transform="translate(1000, 920) scale(0.9)">
+  <g transform="translate(1000, 950) scale(0.9)">
     <rect x="-15" y="75" width="30" height="75" fill="#8B4513"/>
     <circle cx="0" cy="37.5" r="45" fill="#006400"/>
   </g>
@@ -12,4 +12,11 @@
     <rect x="-15" y="75" width="30" height="75" fill="#8B4513"/>
     <circle cx="0" cy="37.5" r="45" fill="#006400"/>
   </g>
+  <!-- Grass -->
+  <path d="M 100,900 c 5,-10 5,-10 10,0" stroke="#32CD32" stroke-width="2" fill="none"/>
+  <path d="M 150,900 c 5,-15 5,-15 10,0" stroke="#32CD32" stroke-width="2" fill="none"/>
+  <path d="M 500,850 c 5,-10 5,-10 10,0" stroke="#32CD32" stroke-width="2" fill="none"/>
+  <path d="M 550,850 c 5,-15 5,-15 10,0" stroke="#32CD32" stroke-width="2" fill="none"/>
+  <path d="M 1200,900 c 5,-10 5,-10 10,0" stroke="#32CD32" stroke-width="2" fill="none"/>
+  <path d="M 1250,900 c 5,-15 5,-15 10,0" stroke="#32CD32" stroke-width="2" fill="none"/>
 </svg>
