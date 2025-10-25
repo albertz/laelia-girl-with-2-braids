@@ -18,7 +18,7 @@ const gameState = {
     keys: {},
     gravity: 0.5,
     ground: 0,
-    worldWidth: 3000
+    worldWidth: 5000 // Increased world width
 };
 
 document.addEventListener('keydown', (event) => {
@@ -40,7 +40,7 @@ function gameLoop() {
     }
 
     if (gameState.keys['ArrowUp'] && gameState.player.onGround) {
-        gameState.player.dy = -12; // Jump
+        gameState.player.dy = -12; // Jump up
         gameState.player.onGround = false;
     }
 
@@ -64,8 +64,9 @@ function gameLoop() {
     if (gameState.player.x < 0) {
         gameState.player.x = 0;
     }
-    if (gameState.player.x > gameState.worldWidth - playerElement.clientWidth) {
-        gameState.player.x = gameState.worldWidth - playerElement.clientWidth;
+    // Use a fixed player width for boundary check for now
+    if (gameState.player.x > gameState.worldWidth - 100) {
+        gameState.player.x = gameState.worldWidth - 100;
     }
 
     // Update camera
@@ -85,8 +86,8 @@ function gameLoop() {
         gameState.camera.x = gameState.worldWidth - window.innerWidth;
     }
 
-    // Apply transformations
-    playerElement.style.transform = `translateX(${gameState.player.x - gameState.camera.x}px) translateY(${-gameState.player.y}px)`;
+    // Apply transformations (fixed translateY)
+    playerElement.style.transform = `translateX(${gameState.player.x - gameState.camera.x}px) translateY(${gameState.player.y}px)`;
 
     backgroundLayers.forEach((layer, index) => {
         const parallaxFactor = (index + 1) * 0.2;

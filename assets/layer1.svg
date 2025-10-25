@@ -1,3 +1,15 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
   <path d="M0,1080 V800 C480,700 960,900 1440,800 C1920,700 1920,800 1920,800 V1080 H0 Z" fill="#D5DBDB"/>
+  <g transform="translate(300, 750) scale(0.5)">
+    <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
+    <circle cx="0" cy="25" r="30" fill="#2E8B57"/>
+  </g>
+  <g transform="translate(900, 720) scale(0.4)">
+    <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
+    <circle cx="0" cy="25" r="30" fill="#2E8B57"/>
+  </g>
+  <g transform="translate(1500, 780) scale(0.6)">
+    <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
+    <circle cx="0" cy="25" r="30" fill="#2E8B57"/>
+  </g>
 </svg>
