@@ -1,16 +1,21 @@
 
 const gameContainer = document.getElementById('game-container');
 const playerElement = document.getElementById('player');
+const bikeElement = document.getElementById('bike');
 const backgroundLayers = document.querySelectorAll('.layer');
 
 const gameState = {
     player: {
         x: 100,
-        y: 880, // Start on the ground
+        y: 0, // Start on the ground
         dx: 0,
         dy: 0,
         onGround: true,
-        onBike: true
+        onBike: false // Start as walking girl
+    },
+    bike: {
+        x: 200,
+        y: 0,
     },
     camera: {
         x: 0,
@@ -18,7 +23,7 @@ const gameState = {
     },
     keys: {},
     gravity: 0.5,
-    ground: 880,
+    ground: 0,
     worldWidth: 5000,
     baseWidth: 1920,
     baseHeight: 1080,
@@ -43,10 +48,24 @@ function handleResize() {
 
 window.addEventListener('resize', handleResize);
 
+function toggleBike() {
+    if (gameState.player.onBike) {
+        gameState.player.onBike = false;
+    } else {
+        const distance = Math.abs(gameState.player.x - gameState.bike.x);
+        if (distance < 100) { // Only get on if close to the bike
+            gameState.player.onBike = true;
+        }
+    }
+}
+
 document.addEventListener('keydown', (event) => {
     gameState.keys[event.key] = true;
     if (event.key === 'd') {
         gameState.debugMode = !gameState.debugMode;
+    }
+    if (event.key === ' ') { // Space key
+        toggleBike();
     }
 });
 
@@ -56,7 +75,7 @@ document.addEventListener('keyup', (event) => {
 
 function gameLoop() {
     // Player speed
-    const speed = gameState.debugMode ? 20 : 5; // Increased debug speed
+    const speed = gameState.debugMode ? 20 : 5;
 
     // Player movement
     if (gameState.keys['ArrowRight']) {
@@ -96,6 +115,12 @@ function gameLoop() {
         gameState.player.x = gameState.worldWidth - 100;
     }
 
+    // Update bike position
+    if (gameState.player.onBike) {
+        gameState.bike.x = gameState.player.x;
+        gameState.bike.y = gameState.player.y;
+    }
+
     // Update camera with smoothing
     const playerWidth = 80; // Corrected player width (100 * 0.8 scale)
     const targetCameraX = gameState.player.x - (gameState.baseWidth / 2) + (playerWidth / 2);
@@ -112,7 +137,10 @@ function gameLoop() {
 
     // Apply transformations
     const playerScreenX = gameState.player.x - gameState.camera.x;
-    playerElement.style.transform = `translateX(${playerScreenX}px) translateY(${gameState.player.y - gameState.ground}px)`;
+    playerElement.style.transform = `translateX(${playerScreenX}px) translateY(${gameState.player.y}px)`;
+
+    const bikeScreenX = gameState.bike.x - gameState.camera.x;
+    bikeElement.style.transform = `translateX(${bikeScreenX}px) translateY(${gameState.bike.y}px)`;
 
     // Debug mode visual indicator
     if (gameState.debugMode) {

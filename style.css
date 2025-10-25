@@ -56,24 +56,19 @@ body {
 #player {
     position: absolute;
     bottom: 0;
-    left: 0;
     z-index: 4;
+    transform: scale(0.8);
+}
+
+#bike {
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
     transform: scale(0.8);
 }
 
 #player.debug-mode {
     outline: 2px solid red;
-}
-
-#girl {
-    position: absolute;
-    bottom: 100px; /* Adjusted for correct seating */
-    left: 55px;
-}
-
-#bicycle {
-    position: absolute;
-    bottom: 20px; /* Adjusted to bring wheels on screen */
 }
 
 .wheel {
@@ -88,6 +83,10 @@ body {
 
 .wheel2 {
     left: 140px;
+}
+
+.hidden {
+    display: none;
 }
 
 @keyframes spin {
