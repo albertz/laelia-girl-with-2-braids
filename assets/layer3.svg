@@ -1,5 +1,7 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0,1080 V900 C480,850 960,1000 1440,900 C1920,800 1920,900 1920,900 V1080 H0 Z" fill="#2E8B57"/>
+  <path d="M0,1080 V900 C480,850 790,900 L 790,1080 H0 Z" fill="#2E8B57"/>
+  <!-- Right part of the hill -->
+  <path d="M1010,1080 V900 C1010,1000 1440,900 C1920,800 1920,900 1920,900 V1080 Z" fill="#2E8B57"/>
   <g transform="translate(200, 880) scale(1)">
     <rect x="-15" y="75" width="30" height="75" fill="#8B4513"/>
     <circle cx="0" cy="37.5" r="45" fill="#006400"/>

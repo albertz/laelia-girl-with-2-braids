@@ -3,6 +3,7 @@ const gameContainer = document.getElementById('game-container');
 const playerElement = document.getElementById('player');
 const bikeElement = document.getElementById('bike');
 const backgroundLayers = document.querySelectorAll('.layer');
+const gameOverMessage = document.getElementById('game-over-message');
 
 const gameState = {
     player: {
@@ -27,7 +28,9 @@ const gameState = {
     worldWidth: 5000,
     baseWidth: 1920,
     baseHeight: 1080,
-    debugMode: false
+    debugMode: false,
+    gameOver: false,
+    gap: { x: 790, width: 220 }
 };
 
 function handleResize() {
@@ -59,6 +62,20 @@ function toggleBike() {
     }
 }
 
+function resetGame() {
+    gameState.player.x = 100;
+    gameState.player.y = 0;
+    gameState.player.dx = 0;
+    gameState.player.dy = 0;
+    gameState.player.onGround = true;
+    gameState.player.onBike = false;
+    gameState.bike.x = 200;
+    gameState.bike.y = 0;
+    gameState.camera.x = 0;
+    gameState.gameOver = false;
+    gameOverMessage.classList.add('hidden');
+}
+
 document.addEventListener('keydown', (event) => {
     gameState.keys[event.key] = true;
     if (event.key === 'd') {
@@ -67,6 +84,9 @@ document.addEventListener('keydown', (event) => {
     if (event.key === ' ') { // Space key
         toggleBike();
     }
+    if (event.key === 'r' && gameState.gameOver) {
+        resetGame();
+    }
 });
 
 document.addEventListener('keyup', (event) => {
@@ -74,6 +94,10 @@ document.addEventListener('keyup', (event) => {
 });
 
 function gameLoop() {
+    if (gameState.gameOver) {
+        return;
+    }
+
     // Player speed
     const speed = gameState.debugMode ? 20 : 5;
 
@@ -115,6 +139,14 @@ function gameLoop() {
         gameState.player.x = gameState.worldWidth - 100;
     }
 
+    // Collision with gap
+    if (gameState.player.x + 50 > gameState.gap.x &&
+        gameState.player.x < gameState.gap.x + gameState.gap.width &&
+        gameState.player.y > gameState.ground) {
+        gameState.gameOver = true;
+        gameOverMessage.classList.remove('hidden');
+    }
+
     // Update bike position
     if (gameState.player.onBike) {
         gameState.bike.x = gameState.player.x;
@@ -145,6 +177,7 @@ function gameLoop() {
         playerY -= 80; // Adjust to make her sit on the bike
     } else {
         playerElement.innerHTML = `<img src="assets/walking-girl.svg" alt="Walking girl">`;
+        bikeElement.classList.remove('hidden');
     }
 
     // Apply transformations
