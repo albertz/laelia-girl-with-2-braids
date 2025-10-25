@@ -21,7 +21,8 @@ const gameState = {
     ground: 880,
     worldWidth: 5000,
     baseWidth: 1920,
-    baseHeight: 1080
+    baseHeight: 1080,
+    debugMode: false
 };
 
 function handleResize() {
@@ -44,6 +45,9 @@ window.addEventListener('resize', handleResize);
 
 document.addEventListener('keydown', (event) => {
     gameState.keys[event.key] = true;
+    if (event.key === 'd') {
+        gameState.debugMode = !gameState.debugMode;
+    }
 });
 
 document.addEventListener('keyup', (event) => {
@@ -51,11 +55,14 @@ document.addEventListener('keyup', (event) => {
 });
 
 function gameLoop() {
+    // Player speed
+    const speed = gameState.debugMode ? 10 : 5;
+
     // Player movement
     if (gameState.keys['ArrowRight']) {
-        gameState.player.dx = 5;
+        gameState.player.dx = speed;
     } else if (gameState.keys['ArrowLeft']) {
-        gameState.player.dx = -5;
+        gameState.player.dx = -speed;
     } else {
         gameState.player.dx = 0;
     }
@@ -89,8 +96,16 @@ function gameLoop() {
         gameState.player.x = gameState.worldWidth - 100;
     }
 
-    // Update camera
-    gameState.camera.x = gameState.player.x - (gameState.baseWidth / 2);
+    // Update camera with dead zone
+    const deadZone = 200; // 1/10th of 1920 is 192, so 200 is a good round number
+    const rightBoundary = gameState.camera.x + gameState.baseWidth - deadZone;
+    const leftBoundary = gameState.camera.x + deadZone;
+
+    if (gameState.player.x > rightBoundary) {
+        gameState.camera.x = gameState.player.x - (gameState.baseWidth - deadZone);
+    } else if (gameState.player.x < leftBoundary) {
+        gameState.camera.x = gameState.player.x - deadZone;
+    }
 
     // Clamp camera to world boundaries
     if (gameState.camera.x < 0) {
@@ -103,6 +118,13 @@ function gameLoop() {
     // Apply transformations
     const playerScreenX = gameState.player.x - gameState.camera.x;
     playerElement.style.transform = `translateX(${playerScreenX}px) translateY(${gameState.player.y - gameState.ground}px)`;
+
+    // Debug mode visual indicator
+    if (gameState.debugMode) {
+        playerElement.classList.add('debug-mode');
+    } else {
+        playerElement.classList.remove('debug-mode');
+    }
 
     backgroundLayers.forEach((layer, index) => {
         const parallaxFactor = (index + 1) * 0.2;

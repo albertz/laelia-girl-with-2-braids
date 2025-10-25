@@ -51,6 +51,10 @@ body {
     transform: scale(0.8);
 }
 
+#player.debug-mode {
+    outline: 2px solid red;
+}
+
 #girl {
     position: absolute;
     bottom: 80px;
