@@ -135,9 +135,19 @@ function gameLoop() {
         gameState.camera.x = gameState.worldWidth - gameState.baseWidth;
     }
 
+    // Show/hide player graphics and position on bike
+    let playerY = gameState.player.y;
+    if (gameState.player.onBike) {
+        playerElement.innerHTML = `<img src="assets/girl.svg" alt="Girl on a bicycle">`;
+        playerY -= 80; // Adjust to make her sit on the bike
+    } else {
+        playerElement.innerHTML = `<img src="assets/walking-girl.svg" alt="Walking girl">`;
+        bikeElement.classList.remove('hidden');
+    }
+
     // Apply transformations
     const playerScreenX = gameState.player.x - gameState.camera.x;
-    playerElement.style.transform = `translateX(${playerScreenX}px) translateY(${gameState.player.y}px)`;
+    playerElement.style.transform = `translateX(${playerScreenX}px) translateY(${playerY}px)`;
 
     const bikeScreenX = gameState.bike.x - gameState.camera.x;
     bikeElement.style.transform = `translateX(${bikeScreenX}px) translateY(${gameState.bike.y}px)`;
