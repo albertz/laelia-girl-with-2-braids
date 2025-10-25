@@ -1,34 +1,48 @@
 <svg id="girl-svg" width="100" height="150" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
-            <line x1="0" y1="0" x2="0" y2="8" stroke="#FFC0CB" stroke-width="4" />
+        <pattern id="stripes" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="4" stroke="#FF69B4" stroke-width="2" />
         </pattern>
     </defs>
 
-    <!-- Hair -->
-    <circle cx="50" cy="30" r="22" fill="#FF0000"/>
-    <rect x="25" y="30" width="10" height="40" rx="5" fill="#FF0000"/>
-    <rect x="65" y="30" width="10" height="40" rx="5" fill="#FF0000"/>
+    <!-- Hair (back) -->
+    <path d="M 30 32 C 10 40, 10 60, 30 70 L 28 32 Z" fill="#FF0000"/>
+    <path d="M 70 32 C 90 40, 90 60, 70 70 L 72 32 Z" fill="#FF0000"/>
+
+    <!-- Legs -->
+    <rect x="42" y="95" width="10" height="40" rx="3" fill="#F5CBA7"/>
+    <rect x="58" y="95" width="10" height="40" rx="3" fill="#F5CBA7"/>
+    <rect x="42" y="115" width="10" height="20" fill="url(#stripes)"/>
+    <rect x="58" y="115" width="10" height="20" fill="url(#stripes)"/>
+
+    <!-- Shoes -->
+    <path d="M 40 135 C 35 140, 50 140, 48 135 Z" fill="#8B4513"/>
+    <path d="M 56 135 C 51 140, 66 140, 64 135 Z" fill="#8B4513"/>
+
+    <!-- Arms -->
+    <rect x="30" y="55" width="8" height="35" rx="4" fill="#F5CBA7" transform="rotate(-10, 34, 72.5)"/>
+    <rect x="72" y="55" width="8" height="35" rx="4" fill="#F5CBA7" transform="rotate(10, 76, 72.5)"/>
+
+    <!-- Body -->
+    <rect x="40" y="50" width="30" height="50" rx="5" fill="#4A90E2"/>
+    <rect x="40" y="50" width="30" height="10" fill="#FFFFFF"/> <!-- Collar -->
+    <rect x="45" y="70" width="20" height="5" fill="#FFD700"/> <!-- Belt -->
+
 
     <!-- Head -->
     <circle cx="50" cy="30" r="20" fill="#F5CBA7"/>
-    <circle cx="45" cy="28" r="2" fill="#000"/>
-    <circle cx="55" cy="28" r="2" fill="#000"/>
-    <path d="M 45 35 q 5 5 10 0" stroke="#000" stroke-width="1" fill="none"/>
 
-    <!-- Body -->
-    <rect x="40" y="50" width="20" height="50" fill="#4A90E2"/>
+    <!-- Hair (front) -->
+    <path d="M 30 20 C 40 10, 60 10, 70 20 C 70 25, 30 25, 30 20 Z" fill="#FF0000"/>
+    <path d="M 30 20 C 35 28, 40 30, 50 30 C 60 30, 65 28, 70 20" fill="none" stroke="#FF0000" stroke-width="2"/>
 
-    <!-- Arms -->
-    <rect x="30" y="50" width="10" height="30" rx="5" fill="#F5CBA7" transform="rotate(-30, 35, 55)"/>
-    <rect x="60" y="50" width="10" height="30" rx="5" fill="#F5CBA7" transform="rotate(30, 65, 55)"/>
+    <!-- Face -->
+    <circle cx="44" cy="28" r="3" fill="#FFFFFF"/>
+    <circle cx="56" cy="28" r="3" fill="#FFFFFF"/>
+    <circle cx="44" cy="28" r="1.5" fill="#0000FF"/>
+    <circle cx="56" cy="28" r="1.5" fill="#0000FF"/>
+    <circle cx="44.5" cy="27.5" r="0.5" fill="#FFFFFF"/>
+    <circle cx="56.5" cy="27.5" r="0.5" fill="#FFFFFF"/>
+    <path d="M 48 35 C 50 38, 52 38, 54 35" stroke="#C0392B" stroke-width="1" fill="none"/>
 
-    <!-- Legs -->
-    <rect x="42" y="95" width="10" height="40" rx="5" fill="url(#stripes)" stroke="#F5CBA7" stroke-width="1"/>
-    <rect x="48" y="95" width="10" height="40" rx="5" fill="url(#stripes)" stroke="#F5CBA7" stroke-width="1"/>
-
-
-    <!-- Shoes -->
-    <ellipse cx="47" cy="138" rx="8" ry="4" fill="#000"/>
-    <ellipse cx="53" cy="138" rx="8" ry="4" fill="#000"/>
 </svg>
