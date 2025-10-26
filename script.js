@@ -2,6 +2,7 @@
 const gameContainer = document.getElementById('game-container');
 const playerElement = document.getElementById('player');
 const bikeElement = document.getElementById('bike');
+const horseElement = document.getElementById('horse');
 const backgroundLayers = document.querySelectorAll('.layer');
 
 const gameState = {
@@ -11,10 +12,15 @@ const gameState = {
         dx: 0,
         dy: 0,
         onGround: true,
-        onBike: false // Start as walking girl
+        onBike: false, // Start as walking girl
+        onHorse: false
     },
     bike: {
         x: 200,
+        y: 0,
+    },
+    horse: {
+        x: 400,
         y: 0,
     },
     camera: {
@@ -48,13 +54,18 @@ function handleResize() {
 
 window.addEventListener('resize', handleResize);
 
-function toggleBike() {
-    if (gameState.player.onBike) {
+function toggleMount() {
+    if (gameState.player.onBike || gameState.player.onHorse) {
         gameState.player.onBike = false;
+        gameState.player.onHorse = false;
     } else {
-        const distance = Math.abs(gameState.player.x - gameState.bike.x);
-        if (distance < 100) { // Only get on if close to the bike
+        const distToBike = Math.abs(gameState.player.x - gameState.bike.x);
+        const distToHorse = Math.abs(gameState.player.x - gameState.horse.x);
+
+        if (distToBike < 100 && distToBike < distToHorse) {
             gameState.player.onBike = true;
+        } else if (distToHorse < 100) {
+            gameState.player.onHorse = true;
         }
     }
 }
@@ -65,7 +76,7 @@ document.addEventListener('keydown', (event) => {
         gameState.debugMode = !gameState.debugMode;
     }
     if (event.key === ' ') { // Space key
-        toggleBike();
+        toggleMount();
     }
 });
 
@@ -121,6 +132,12 @@ function gameLoop() {
         gameState.bike.y = gameState.player.y;
     }
 
+    // Update horse position
+    if (gameState.player.onHorse) {
+        gameState.horse.x = gameState.player.x;
+        gameState.horse.y = gameState.player.y;
+    }
+
     // Update camera with smoothing
     const playerWidth = 80; // Corrected player width (100 * 0.8 scale)
     const targetCameraX = gameState.player.x - (gameState.baseWidth / 2) + (playerWidth / 2);
@@ -135,14 +152,17 @@ function gameLoop() {
         gameState.camera.x = gameState.worldWidth - gameState.baseWidth;
     }
 
-    // Show/hide player graphics and position on bike
+    // Show/hide player graphics and position on bike or horse
     let playerX = gameState.player.x;
     let playerY = gameState.player.y;
     if (gameState.player.onBike) {
         playerElement.innerHTML = `<img src="assets/girl.svg" alt="Girl on a bicycle">`;
-        bikeElement.classList.remove('hidden'); // Make sure bike is visible
         playerX += 40; // Adjust to center the girl on the bike
         playerY -= 80; // Adjust to make her sit on the bike
+    } else if (gameState.player.onHorse) {
+        playerElement.innerHTML = `<img src="assets/girl.svg" alt="Girl on a horse">`;
+        playerX += 50; // Adjust to center the girl on the horse
+        playerY -= 120; // Adjust to make her sit on the horse
     } else {
         playerElement.innerHTML = `<img src="assets/walking-girl.svg" alt="Walking girl">`;
     }
@@ -153,6 +173,9 @@ function gameLoop() {
 
     const bikeScreenX = gameState.bike.x - gameState.camera.x;
     bikeElement.style.transform = `translateX(${bikeScreenX}px) translateY(${gameState.bike.y}px)`;
+
+    const horseScreenX = gameState.horse.x - gameState.camera.x;
+    horseElement.style.transform = `translateX(${horseScreenX}px) translateY(${gameState.horse.y}px)`;
 
     // Debug mode visual indicator
     if (gameState.debugMode) {

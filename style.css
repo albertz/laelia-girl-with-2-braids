@@ -68,6 +68,13 @@ body {
     transform: scale(0.8);
 }
 
+#horse {
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    transform: scale(0.8);
+}
+
 #player.debug-mode {
     outline: 2px solid red;
 }
