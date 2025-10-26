@@ -93,7 +93,10 @@ function gameLoop(currentTime) {
     const deltaTime = (currentTime - lastTime) / 1000; // Delta time in seconds
     lastTime = currentTime;
     // Player speed
-    const speed = gameState.debugMode ? 1200 : 300;
+    let speed = gameState.debugMode ? 1200 : 300;
+    if (gameState.player.onBike || gameState.player.onHorse) {
+        speed *= 2; // Double the speed when on a mount
+    }
 
     // Player movement
     if (gameState.keys['ArrowRight']) {
