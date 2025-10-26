@@ -1,5 +1,5 @@
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <g transform="translate(40, 128) scale(1.2)">
+    <g transform="translate(20, 80) scale(2.0)">
         <!-- Body -->
         <rect x="0" y="0" width="80" height="40" rx="10" fill="white" stroke="black" stroke-width="2"/>
         <!-- Stains -->
