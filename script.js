@@ -162,7 +162,7 @@ function gameLoop() {
     } else if (gameState.player.onHorse) {
         playerElement.innerHTML = `<img src="assets/girl.svg" alt="Girl on a horse">`;
         playerX += 50; // Adjust to center the girl on the horse
-        playerY -= 100; // Adjust to make her sit on the horse
+        playerY -= 120; // Adjust to make her sit on the horse
     } else {
         playerElement.innerHTML = `<img src="assets/walking-girl.svg" alt="Walking girl">`;
     }
