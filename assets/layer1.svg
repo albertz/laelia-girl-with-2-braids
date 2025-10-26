@@ -1,4 +1,31 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes fly-birds {
+        from {
+            transform: translateX(-100px);
+        }
+        to {
+            transform: translateX(2000px);
+        }
+    }
+
+    .bird {
+        animation: fly-birds 30s linear infinite;
+    }
+
+    @keyframes move-clouds {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(2000px);
+        }
+    }
+
+    .cloud {
+        animation: move-clouds 60s linear infinite;
+    }
+  </style>
   <path d="M0,1080 V800 C480,700 960,900 1440,800 C1920,700 1920,800 1920,800 V1080 H0 Z" fill="#90EE90"/>
   <g transform="translate(300, 750) scale(0.5)">
     <rect x="-10" y="50" width="20" height="50" fill="#A0522D"/>
@@ -13,7 +40,7 @@
     <path d="M -30 50 L 0 -50 L 30 50 Z" fill="#2E8B57"/>
   </g>
   <g transform="translate(200, 200) scale(0.8)">
-    <g class="cloud">
+    <g class="cloud" transform="translate(0,0)">
       <circle cx="0" cy="0" r="40" fill="white" fill-opacity="0.8"/>
       <circle cx="40" cy="0" r="40" fill="white" fill-opacity="0.8"/>
       <circle cx="80" cy="0" r="40" fill="white" fill-opacity="0.8"/>
@@ -22,7 +49,7 @@
     </g>
   </g>
   <g transform="translate(1000, 150) scale(1.2)">
-    <g class="cloud">
+    <g class="cloud" transform="translate(0,0)" style="animation-delay: -30s;">
       <circle cx="0" cy="0" r="50" fill="white" fill-opacity="0.8"/>
       <circle cx="50" cy="0" r="50" fill="white" fill-opacity="0.8"/>
       <circle cx="100" cy="0" r="50" fill="white" fill-opacity="0.8"/>
@@ -31,17 +58,17 @@
     </g>
   </g>
   <g transform="translate(100, 100)">
-    <g class="bird">
+    <g class="bird" transform="translate(0,0)">
       <path d="M 0 0 C 10 10, 20 10, 30 0 L 15 10 Z" fill="black"/>
     </g>
   </g>
   <g transform="translate(150, 120)">
-    <g class="bird">
+    <g class="bird" transform="translate(0,0)" style="animation-delay: -10s;">
       <path d="M 0 0 C 10 10, 20 10, 30 0 L 15 10 Z" fill="black"/>
     </g>
   </g>
   <g transform="translate(800, 80)">
-    <g class="bird">
+    <g class="bird" transform="translate(0,0)" style="animation-delay: -20s;">
       <path d="M 0 0 C 10 10, 20 10, 30 0 L 15 10 Z" fill="black"/>
     </g>
   </g>
