@@ -9,8 +9,8 @@ const gameState = {
     player: {
         x: 100,
         y: 0, // Start on the ground
-        dx: 0,
-        dy: 0,
+        dx: 0, // pixels per second
+        dy: 0, // pixels per second
         onGround: true,
         onBike: false, // Start as walking girl
         onHorse: false
@@ -28,7 +28,7 @@ const gameState = {
         y: 0
     },
     keys: {},
-    gravity: 0.5,
+    gravity: 1800, // pixels per second^2
     ground: 0,
     worldWidth: 5000,
     baseWidth: 1920,
@@ -84,9 +84,16 @@ document.addEventListener('keyup', (event) => {
     gameState.keys[event.key] = false;
 });
 
-function gameLoop() {
+let lastTime = 0;
+
+function gameLoop(currentTime) {
+    if (!lastTime) {
+        lastTime = currentTime;
+    }
+    const deltaTime = (currentTime - lastTime) / 1000; // Delta time in seconds
+    lastTime = currentTime;
     // Player speed
-    const speed = gameState.debugMode ? 20 : 5;
+    const speed = gameState.debugMode ? 1200 : 300;
 
     // Player movement
     if (gameState.keys['ArrowRight']) {
@@ -98,17 +105,17 @@ function gameLoop() {
     }
 
     if (gameState.keys['ArrowUp'] && gameState.player.onGround) {
-        gameState.player.dy = -15; // Jump up
+        gameState.player.dy = -900; // Jump up
         gameState.player.onGround = false;
     }
 
     // Update player position
-    gameState.player.x += gameState.player.dx;
-    gameState.player.y += gameState.player.dy;
+    gameState.player.x += gameState.player.dx * deltaTime;
+    gameState.player.y += gameState.player.dy * deltaTime;
 
     // Apply gravity
     if (!gameState.player.onGround) {
-        gameState.player.dy += gameState.gravity;
+        gameState.player.dy += gameState.gravity * deltaTime;
     }
 
     // Collision with ground
@@ -195,4 +202,4 @@ function gameLoop() {
 
 // Initial setup
 handleResize();
-gameLoop();
+requestAnimationFrame(gameLoop);
