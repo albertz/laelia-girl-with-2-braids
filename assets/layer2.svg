@@ -1,4 +1,44 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes walk-animals {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(50px);
+        }
+    }
+
+    .animal {
+        animation: walk-animals 20s linear infinite alternate;
+    }
+
+    @keyframes fly-birds {
+        from {
+            transform: translateX(-100px);
+        }
+        to {
+            transform: translateX(2000px);
+        }
+    }
+
+    .bird {
+        animation: fly-birds 30s linear infinite;
+    }
+
+    @keyframes move-clouds {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(2000px);
+        }
+    }
+
+    .cloud {
+        animation: move-clouds 60s linear infinite;
+    }
+  </style>
   <path d="M0,1080 V850 C480,800 960,950 1440,850 C1920,750 1920,850 1920,850 V1080 H0 Z" fill="#3CB371"/>
   <g transform="translate(500, 800) scale(0.7)">
     <rect x="-10" y="50" width="20" height="50" fill="#8B4513"/>
@@ -8,8 +48,8 @@
     <rect x="-10" y="50" width="20" height="50" fill="#8B4513"/>
     <circle cx="0" cy="25" r="30" fill="#228B22"/>
   </g>
-  <g id="cloud3" transform="translate(600, 250) scale(1)">
-    <g>
+  <g transform="translate(600, 250) scale(1)">
+    <g class="cloud" transform="translate(0,0)">
       <circle cx="0" cy="0" r="45" fill="white" fill-opacity="0.7"/>
       <circle cx="45" cy="0" r="45" fill="white" fill-opacity="0.7"/>
       <circle cx="90" cy="0" r="45" fill="white" fill-opacity="0.7"/>
@@ -17,8 +57,8 @@
       <circle cx="67.5" cy="-22.5" r="45" fill="white" fill-opacity="0.7"/>
     </g>
   </g>
-  <g id="cloud4" transform="translate(100, 350) scale(0.8)">
-    <g>
+  <g transform="translate(100, 350) scale(0.8)">
+    <g class="cloud" transform="translate(0,0)" style="animation-delay: -20s;">
       <circle cx="0" cy="0" r="45" fill="white" fill-opacity="0.7"/>
       <circle cx="45" cy="0" r="45" fill="white" fill-opacity="0.7"/>
       <circle cx="90" cy="0" r="45" fill="white" fill-opacity="0.7"/>
@@ -26,8 +66,8 @@
       <circle cx="67.5" cy="-22.5" r="45" fill="white" fill-opacity="0.7"/>
     </g>
   </g>
-  <g id="animal1" transform="translate(300, 820) scale(0.5)">
-    <g>
+  <g transform="translate(300, 820) scale(0.5)">
+    <g class="animal" transform="translate(0,0)">
       <!-- horse -->
       <rect x="0" y="0" width="80" height="40" fill="#A0522D"/>
       <rect x="80" y="-20" width="20" height="40" fill="#A0522D"/>
@@ -35,25 +75,25 @@
       <rect x="60" y="40" width="10" height="20" fill="#A0522D"/>
     </g>
   </g>
-  <g id="animal2" transform="translate(800, 860) scale(0.3)">
-    <g>
+  <g transform="translate(800, 860) scale(0.3)">
+    <g class="animal" transform="translate(0,0)" style="animation-delay: -10s;">
       <!-- sheep -->
       <circle cx="20" cy="20" r="20" fill="white"/>
       <circle cx="0" cy="20" r="10" fill="lightgray"/>
     </g>
   </g>
-  <g id="bird4" transform="translate(100, 200) scale(0.2)">
-    <g>
+  <g transform="translate(100, 200) scale(0.2)">
+    <g class="bird" transform="translate(0,0)">
       <path d="M 0,0 L 20,10 L 40,0 L 20,20 Z" fill="black"/>
     </g>
   </g>
-  <g id="bird5" transform="translate(200, 250) scale(0.15)">
-    <g>
+  <g transform="translate(200, 250) scale(0.15)">
+    <g class="bird" transform="translate(0,0)" style="animation-delay: -5s;">
       <path d="M 0,0 L 20,10 L 40,0 L 20,20 Z" fill="black"/>
     </g>
   </g>
-  <g id="bird6" transform="translate(50, 300) scale(0.25)">
-    <g>
+  <g transform="translate(50, 300) scale(0.25)">
+    <g class="bird" transform="translate(0,0)" style="animation-delay: -15s;">
       <path d="M 0,0 L 20,10 L 40,0 L 20,20 Z" fill="black"/>
     </g>
   </g>

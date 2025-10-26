@@ -3,43 +3,7 @@ const gameContainer = document.getElementById('game-container');
 const playerElement = document.getElementById('player');
 const bikeElement = document.getElementById('bike');
 const horseElement = document.getElementById('horse');
-
-function initializeAnimatedElements() {
-    const elements = [
-        { id: 'cloud1', speedX: 20, parallaxFactor: 0.1 },
-        { id: 'cloud2', speedX: -30, parallaxFactor: 0.15 },
-        { id: 'cloud3', speedX: 25, parallaxFactor: 0.2 },
-        { id: 'cloud4', speedX: -35, parallaxFactor: 0.25 },
-        { id: 'bird1', speedX: 100, parallaxFactor: 0.1 },
-        { id: 'bird2', speedX: -120, parallaxFactor: 0.15 },
-        { id: 'bird3', speedX: 110, parallaxFactor: 0.1 },
-        { id: 'bird4', speedX: -130, parallaxFactor: 0.2 },
-        { id: 'bird5', speedX: 140, parallaxFactor: 0.25 },
-        { id: 'bird6', speedX: -150, parallaxFactor: 0.2 },
-        { id: 'animal1', speedX: 10, parallaxFactor: 0.4 },
-        { id: 'animal2', speedX: 15, parallaxFactor: 0.4 },
-    ];
-
-    elements.forEach(el => {
-        const element = document.getElementById(el.id);
-        if (element) {
-            const transform = element.getAttribute('transform');
-            const match = /translate\(([^,]+),([^)]+)\)/.exec(transform);
-            const initialX = match ? parseFloat(match[1]) : 0;
-            const initialY = match ? parseFloat(match[2]) : 0;
-
-            gameState.animatedElements.push({
-                element,
-                initialX,
-                initialY,
-                currentX: initialX,
-                speedX: el.speedX,
-                parallaxFactor: el.parallaxFactor,
-                initialTransform: transform
-            });
-        }
-    });
-}
+const backgroundLayers = document.querySelectorAll('.layer');
 
 const gameState = {
     player: {
@@ -69,8 +33,7 @@ const gameState = {
     worldWidth: 5000,
     baseWidth: 1920,
     baseHeight: 1080,
-    debugMode: false,
-    animatedElements: []
+    debugMode: false
 };
 
 function handleResize() {
@@ -224,21 +187,6 @@ function gameLoop(currentTime) {
     const horseScreenX = gameState.horse.x - gameState.camera.x;
     horseElement.style.transform = `translateX(${horseScreenX}px) translateY(${gameState.horse.y}px)`;
 
-    // Update animated elements
-    gameState.animatedElements.forEach(el => {
-        el.currentX += el.speedX * deltaTime;
-
-        const screenX = el.currentX - gameState.camera.x * el.parallaxFactor;
-
-        if (el.speedX > 0 && screenX > gameState.baseWidth) {
-            el.currentX -= (gameState.worldWidth + 200);
-        } else if (el.speedX < 0 && screenX < -200) {
-            el.currentX += (gameState.worldWidth + 200);
-        }
-
-        el.element.setAttribute('transform', `translate(${screenX}, ${el.initialY}) ${el.initialTransform.replace(/translate\([^)]+\)/, '')}`.trim());
-    });
-
     // Debug mode visual indicator
     if (gameState.debugMode) {
         playerElement.classList.add('debug-mode');
@@ -246,10 +194,15 @@ function gameLoop(currentTime) {
         playerElement.classList.remove('debug-mode');
     }
 
+    backgroundLayers.forEach((layer, index) => {
+        const parallaxFactor = (index + 1) * 0.2;
+        const backgroundOffset = -gameState.camera.x * parallaxFactor;
+        layer.style.backgroundPositionX = `${backgroundOffset}px`;
+    });
+
     requestAnimationFrame(gameLoop);
 }
 
 // Initial setup
 handleResize();
-initializeAnimatedElements();
 requestAnimationFrame(gameLoop);

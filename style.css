@@ -40,14 +40,17 @@ body {
 }
 
 .layer1 {
+    background-image: url('assets/layer1.svg');
     z-index: 1;
 }
 
 .layer2 {
+    background-image: url('assets/layer2.svg');
     z-index: 2;
 }
 
 .layer3 {
+    background-image: url('assets/layer3.svg');
     z-index: 3;
 }
 
