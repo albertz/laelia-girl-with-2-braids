@@ -37,19 +37,10 @@ const gameState = {
 };
 
 function handleResize() {
-    const scaleX = window.innerWidth / gameState.baseWidth;
-    const scaleY = window.innerHeight / gameState.baseHeight;
-    const scale = Math.min(scaleX, scaleY);
-
-    const newWidth = gameState.baseWidth * scale;
-    const newHeight = gameState.baseHeight * scale;
-
-    const offsetX = (window.innerWidth - newWidth) / 2;
-    const offsetY = (window.innerHeight - newHeight) / 2;
-
+    const scale = Math.min(window.innerWidth / gameState.baseWidth, window.innerHeight / gameState.baseHeight);
     gameContainer.style.transform = `scale(${scale})`;
-    gameContainer.style.left = `${offsetX}px`;
-    gameContainer.style.top = `${offsetY}px`;
+    gameContainer.style.left = `${(window.innerWidth - gameState.baseWidth * scale) / 2}px`;
+    gameContainer.style.top = `${(window.innerHeight - gameState.baseHeight * scale) / 2}px`;
 }
 
 window.addEventListener('resize', handleResize);
@@ -204,5 +195,54 @@ function gameLoop(currentTime) {
 }
 
 // Initial setup
-handleResize();
 requestAnimationFrame(gameLoop);
+
+// Touch controls
+const touchLeft = document.getElementById('touch-left');
+const touchRight = document.getElementById('touch-right');
+const touchJump = document.getElementById('touch-jump');
+const touchMount = document.getElementById('touch-mount');
+
+touchLeft.addEventListener('touchstart', (e) => { e.preventDefault(); gameState.keys['ArrowLeft'] = true; });
+touchLeft.addEventListener('touchend', () => { gameState.keys['ArrowLeft'] = false; });
+
+touchRight.addEventListener('touchstart', (e) => { e.preventDefault(); gameState.keys['ArrowRight'] = true; });
+touchRight.addEventListener('touchend', () => { gameState.keys['ArrowRight'] = false; });
+
+touchJump.addEventListener('touchstart', (e) => { e.preventDefault(); gameState.keys['ArrowUp'] = true; });
+touchJump.addEventListener('touchend', () => { gameState.keys['ArrowUp'] = false; });
+
+touchMount.addEventListener('touchstart', (e) => { e.preventDefault(); toggleMount(); });
+
+function checkOrientation() {
+    const orientationMessage = document.getElementById('orientation-message');
+    if (!orientationMessage) {
+        const message = document.createElement('div');
+        message.id = 'orientation-message';
+        message.innerHTML = 'Please rotate your device to landscape mode for the best experience.';
+        message.style.position = 'fixed';
+        message.style.top = '0';
+        message.style.left = '0';
+        message.style.width = '100%';
+        message.style.height = '100%';
+        message.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        message.style.color = 'white';
+        message.style.display = 'flex';
+        message.style.justifyContent = 'center';
+        message.style.alignItems = 'center';
+        message.style.zIndex = '100';
+        document.body.appendChild(message);
+    }
+
+    if (window.innerHeight > window.innerWidth) {
+        document.getElementById('orientation-message').style.display = 'flex';
+    } else {
+        document.getElementById('orientation-message').style.display = 'none';
+    }
+}
+
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('load', () => {
+    handleResize();
+    checkOrientation();
+});
