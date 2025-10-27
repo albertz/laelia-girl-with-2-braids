@@ -202,19 +202,6 @@ const touchLeft = document.getElementById('touch-left');
 const touchRight = document.getElementById('touch-right');
 const touchJump = document.getElementById('touch-jump');
 const touchMount = document.getElementById('touch-mount');
-const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-fullscreenBtn.addEventListener('click', () => {
-    if (document.fullscreenElement) {
-        document.exitFullscreen();
-    } else {
-        document.documentElement.requestFullscreen();
-    }
-});
-
-document.addEventListener('fullscreenchange', () => {
-    setTimeout(handleResize, 100);
-});
 
 touchLeft.addEventListener('touchstart', (e) => { e.preventDefault(); gameState.keys['ArrowLeft'] = true; });
 touchLeft.addEventListener('touchend', () => { gameState.keys['ArrowLeft'] = false; });
@@ -261,4 +248,5 @@ window.addEventListener('resize', checkOrientation);
 window.addEventListener('load', () => {
     handleResize();
     checkOrientation();
+    window.scrollTo(0, 1);
 });

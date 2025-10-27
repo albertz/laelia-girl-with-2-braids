@@ -1,3 +1,7 @@
+html, body {
+    height: 101%;
+}
+
 body {
     margin: 0;
     overflow: hidden;
