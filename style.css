@@ -173,3 +173,7 @@ body {
     user-select: none;
     -webkit-user-select: none; /* For Safari */
 }
+
+#fullscreen-btn {
+    /* Add any specific styling for the fullscreen button here if needed */
+}

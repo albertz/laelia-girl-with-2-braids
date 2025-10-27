@@ -202,6 +202,19 @@ const touchLeft = document.getElementById('touch-left');
 const touchRight = document.getElementById('touch-right');
 const touchJump = document.getElementById('touch-jump');
 const touchMount = document.getElementById('touch-mount');
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+fullscreenBtn.addEventListener('click', () => {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen();
+    }
+});
+
+document.addEventListener('fullscreenchange', () => {
+    setTimeout(handleResize, 100);
+});
 
 touchLeft.addEventListener('touchstart', (e) => { e.preventDefault(); gameState.keys['ArrowLeft'] = true; });
 touchLeft.addEventListener('touchend', () => { gameState.keys['ArrowLeft'] = false; });
@@ -216,6 +229,7 @@ touchMount.addEventListener('touchstart', (e) => { e.preventDefault(); toggleMou
 
 function checkOrientation() {
     const orientationMessage = document.getElementById('orientation-message');
+    const gameContainer = document.getElementById('game-container');
     if (!orientationMessage) {
         const message = document.createElement('div');
         message.id = 'orientation-message';
@@ -236,8 +250,10 @@ function checkOrientation() {
 
     if (window.innerHeight > window.innerWidth) {
         document.getElementById('orientation-message').style.display = 'flex';
+        gameContainer.style.display = 'none';
     } else {
         document.getElementById('orientation-message').style.display = 'none';
+        gameContainer.style.display = 'block';
     }
 }
 
